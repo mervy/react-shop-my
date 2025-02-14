@@ -2,7 +2,7 @@ import Product from '../models/ProductModel.js';
 
 const getProducts = async (req, res) => {
     try {
-        const page = paseInt(req.query.page) || 1;
+        const page = parseInt(req.query.page) || 1;
         const perPage = 8;
         const total = await Product.countDocuments({ active: true });
 
@@ -20,9 +20,10 @@ const getProducts = async (req, res) => {
         });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Server Error get products', error });
+        res.status(500).json({ message: 'Erro ao buscar produtos', error });
     }
 };
+
 
 const getProductById = async (req, res) => {
     try {
@@ -76,8 +77,7 @@ const deleteProduct = async (req, res) => {
         if (!product) {
             return res.status(404).json({ message: 'Product not found for delete' });
         }
-
-        await product.remove();
+       
         res.json({ message: 'Product removed sucessfully' });
     } catch (error) {
         console.error(error);
