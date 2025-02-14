@@ -10,7 +10,9 @@ const app = express();
 
 connectDB();
 
-app.use(cors());
+const cors = require('cors');
+app.use(cors({ origin: 'https://my-shops-with-react.onrender.com' }));
+
 app.use(express.json());
 
 //Routes
