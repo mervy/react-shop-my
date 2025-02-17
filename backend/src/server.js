@@ -11,8 +11,8 @@ const app = express();
 connectDB();
 
 //URL do frontend no Render 
-app.use(cors());
-//app.use(cors({ origin: 'https://my-shops-with-react.onrender.com' }));
+//app.use(cors());
+app.use(cors({ origin: 'https://my-shops-with-react.onrender.com' }));
 
 app.use(express.json());
 
