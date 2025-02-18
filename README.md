@@ -1,4 +1,9 @@
+## My Shop With Card
+- Frontend: `https://my-shops-with-react.onrender.com`
+- Backend: `https://my-shops-with-react-backend.onrender.com`
+
 ### Users Fake
+
 
 ```json
 users = [
