@@ -2,14 +2,21 @@ import Product from '../models/ProductModel.js';
 
 const getProducts = async (req, res) => {
     try {
+        console.log('Recebendo requisição em /api/products');
         const page = parseInt(req.query.page) || 1;
         const perPage = 8;
+        
+        console.log('Contando documentos...');
         const total = await Product.countDocuments({ active: true });
+        console.log('Total de produtos:', total);
 
+        console.log('Buscando produtos...');
         const products = await Product.find({ active: true })
             .skip((page - 1) * perPage)
             .limit(perPage)
             .sort('-createdAt');
+
+        console.log('Produtos encontrados:', products);
 
         res.json({
             products,
@@ -19,10 +26,11 @@ const getProducts = async (req, res) => {
             totalPages: Math.ceil(total / perPage),
         });
     } catch (error) {
-        console.error(error);
+        console.error('Erro ao buscar produtos:', error);
         res.status(500).json({ message: 'Erro ao buscar produtos', error });
     }
 };
+
 
 
 const getProductById = async (req, res) => {
