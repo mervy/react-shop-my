@@ -15,6 +15,7 @@ const allowedOrigins =
         ? [process.env.FRONTEND_URL_PROD] // Em produção, apenas a URL do Render
         : [process.env.FRONTEND_URL, 'http://localhost:3000', 'http://localhost:5173']; // Em desenvolvimento, permite localhost
 
+        console.log(process.env.FRONTEND_URL_PROD);
 app.use(
     cors({
         origin: allowedOrigins,
