@@ -1,0 +1,6 @@
+.product-image {
+    height: 200px;  /* Altura fixa */
+    max-width: 100%; /* Largura adaptável */
+    object-fit: cover; /* Preserva a proporção sem distorcer a imagem */
+  }
+  

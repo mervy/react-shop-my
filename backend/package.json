@@ -1,8 +1,15 @@
 {
   "name": "backend",
   "version": "1.0.0",
+<<<<<<< HEAD
   "main": "index.js",
   "scripts": {
+=======
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon -L ./src/server.js",
+>>>>>>> dev
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -10,9 +17,18 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+<<<<<<< HEAD
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+=======
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+>>>>>>> dev
     "mongoose": "^8.10.0"
   },
   "devDependencies": {
