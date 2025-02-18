@@ -10,7 +10,19 @@ const app = express();
 
 connectDB();
 
-app.use(cors());
+const allowedOrigins =
+    process.env.NODE_ENV === 'production'
+        ? [process.env.FRONTEND_URL_PROD] // Em produção, apenas a URL do Render
+        : [process.env.FRONTEND_URL, 'http://localhost:3000', 'http://localhost:5173']; // Em desenvolvimento, permite localhost
+
+app.use(
+    cors({
+        origin: allowedOrigins,
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        credentials: true,
+    })
+);
+
 app.use(express.json());
 
 //Routes

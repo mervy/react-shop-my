@@ -8,7 +8,12 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+<<<<<<< HEAD
     "start": "nodemon -L ./src/server.js",
+>>>>>>> dev
+=======
+    "dev": "nodemon -L ./src/server.js",
+    "start": "node ./src/server.js",
 >>>>>>> dev
     "test": "echo \"Error: no test specified\" && exit 1"
   },
