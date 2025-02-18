@@ -12,18 +12,29 @@ connectDB();
 
 const allowedOrigins =
     process.env.NODE_ENV === 'production'
-        ? [process.env.FRONTEND_URL_PROD] // Em produção, apenas a URL do Render
-        : [process.env.FRONTEND_URL, 'http://localhost:3000', 'http://localhost:5173']; // Em desenvolvimento, permite localhost
+        ? [process.env.FRONTEND_URL_PROD]
+        : [process.env.FRONTEND_URL, 'http://localhost:3000', 'http://localhost:5173'];
 
-        console.log("FRONTEND_URL: ", process.env.FRONTEND_URL)
-        console.log("FRONTEND_URL_PROD: ", process.env.FRONTEND_URL_PROD);
+console.log("FRONTEND_URL: ", process.env.FRONTEND_URL);
+console.log("FRONTEND_URL_PROD: ", process.env.FRONTEND_URL_PROD);
+
 app.use(
     cors({
-        origin: allowedOrigins,
+        origin: (origin, callback) => {
+            // Permite requisições sem origem (ex: mobile apps, Postman, etc.)
+            if (!origin) return callback(null, true);
+
+            if (allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        },
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         credentials: true,
     })
 );
+
 
 app.use(express.json());
 
