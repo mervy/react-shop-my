@@ -10,7 +10,13 @@ const app = express();
 
 connectDB();
 
-app.use(cors());
+//URL do frontend no Render 
+app.use(cors({
+    origin: 'https://my-shops-with-react.onrender.com',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Adicione os métodos que você usa
+    credentials: true
+}));
+
 app.use(express.json());
 
 //Routes

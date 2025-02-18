@@ -20,7 +20,7 @@ const Home = () => {
         const fetchProducts = async () => {
             try {
                 setLoading(true);
-                const response = await api.get(`/products?page=${currentPage}&limit=8`);
+                const response = await api.get(`/products`);
                 if (isMounted) {
                     setProducts(response.data.products || []);
                     setTotalPages(response.data.totalPages);
