@@ -60,6 +60,7 @@ const Home = () => {
         <div>
             <Header />
             <Navbar /> {/* Coloquei o Navbar aqui para garantir que a navegação seja exibida */}
+            <section className="container">
             <div className="row">
                 {products.length > 0 ? (
                     products.map((product) => (
@@ -92,6 +93,7 @@ const Home = () => {
                     Próxima
                 </button>
             </div>
+            </section>
             <Footer />
         </div>
     );
