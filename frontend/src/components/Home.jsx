@@ -22,7 +22,7 @@ const Home = () => {
             console.log('API usada:', import.meta.env.VITE_API_URL);
             try {
                 setLoading(true);
-                const response = await api.get(`/products`);
+                const response = await api.get(`/api/products`);
                 if (isMounted) {
                     setProducts(response.data.products || []);
                     setTotalPages(response.data.totalPages);
