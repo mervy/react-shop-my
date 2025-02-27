@@ -11,12 +11,13 @@ const App = () => {
   return (
     <CartProvider>
       <Router>
+        <Navbar /> {/* Agora a Navbar está dentro do Router */}
         <Routes>
-          <Route path="/" element={<Home />} /> {/* Corrigido: <Home /> ao invés de Home */}
-          <Route path="/cart" element={<Cart />} /> {/* Corrigido: <Cart /> ao invés de Cart */}
-          <Route path="/checkout" element={<Checkout />} /> {/* Corrigido: <Checkout /> ao invés de Checkout */}
-          <Route path="/login" element={<Login />} /> {/* Rota de login adicionada */}
-          <Route path="/teste" element={<Teste />} /> {/* Rota de login adicionada */}
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/teste" element={<Teste />} />
         </Routes>
       </Router>
     </CartProvider>

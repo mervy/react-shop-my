@@ -58,8 +58,7 @@ const Home = () => {
 
     return (
         <div>
-            <Header />
-            <Navbar /> {/* Coloquei o Navbar aqui para garantir que a navegação seja exibida */}
+            <Header />            
             <section className="container">
             <div className="row">
                 {products.length > 0 ? (
