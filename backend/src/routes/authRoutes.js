@@ -1,5 +1,5 @@
 import express from 'express';
-import bycrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/UserModel.js';
 import { adminAuth } from '../middleware/protect.js';
@@ -10,9 +10,14 @@ router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email, active: true });
-        if (!user && !(await bycrypt.compare(password, user.password))) {
+        if (!user) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
+        
+        if (!(await bcrypt.compare(password, user.password))) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+        
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
         res.json({
             user: {
