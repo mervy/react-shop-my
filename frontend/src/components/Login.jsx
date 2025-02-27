@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Alert, InputGroup } from 'react-bootstrap';
 import { Eye, EyeSlash } from 'react-bootstrap-icons';
-import api from '../../services/api.js';
+import api from '../services/api';
 
 const Login = () => {
   const [email, setEmail] = useState('');
