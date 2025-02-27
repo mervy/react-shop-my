@@ -13,6 +13,7 @@ const App = () => {
           <Route path="/" element={<Home />} /> {/* Corrigido: <Home /> ao invés de Home */}
           <Route path="/cart" element={<Cart />} /> {/* Corrigido: <Cart /> ao invés de Cart */}
           <Route path="/checkout" element={<Checkout />} /> {/* Corrigido: <Checkout /> ao invés de Checkout */}
+          <Route path="/login" element={<Login />} /> {/* Rota de login adicionada */}
         </Routes>
       </Router>
     </CartProvider>
