@@ -11,8 +11,8 @@ const Navbar = () => {
         <Link className="navbar-brand" to="/">
           <FaHome className="me-2" /> Home
         </Link>
-        <Link className="navbar-brand" to="/teste">
-          <FaStore className="me-2" /> Teste
+        <Link className="navbar-brand" to="/register">
+          <FaStore className="me-2" /> Register
         </Link>
         <Link className="navbar-brand" to="/login">
           <FaUser className="me-2" /> Login

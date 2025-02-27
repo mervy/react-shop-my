@@ -28,6 +28,26 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.post('/register', async (req, res) => {
+    try {
+        const { name, email, password, role } = req.body;
+
+        // Verifica se o usuário já existe
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'Email already in use' });
+        }
+
+        // Cria um novo usuário
+        const newUser = new User({ name, email, password, role });
+        await newUser.save();
+
+        res.status(201).json({ message: 'User registered successfully' });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
 router.post('/users', adminAuth, async (req, res) => {
     try {
         const newUser = new User(req.body);
