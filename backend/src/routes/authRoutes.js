@@ -6,6 +6,10 @@ import { adminAuth } from '../middleware/protect.js';
 
 const router = express.Router();
 
+router.get('/login', (req, res) => {    
+    res.redirect(process.env.FRONTEND_URL + '/login');    
+});
+
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
