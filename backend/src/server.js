@@ -10,19 +10,26 @@ const app = express();
 
 connectDB();
 
-const allowedOrigins =
+/*const allowedOrigins =
     process.env.NODE_ENV === 'production'
         ? [process.env.FRONTEND_URL_PROD] // Em produção, apenas a URL do Render
         : [process.env.FRONTEND_URL, 'http://localhost:3000', 'http://localhost:5173']; // Em desenvolvimento, permite localhost
+        */
+const allowedOrigins = ['https://my-shops-with-react.onrender.com'];
 
-        console.log(process.env.FRONTEND_URL_PROD);
-app.use(
-    cors({
-        origin: allowedOrigins,
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        credentials: true,
-    })
-);
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
