@@ -4,7 +4,7 @@ const getProducts = async (req, res) => {
     try {
         console.log('Recebendo requisição em /api/products');
         const page = parseInt(req.query.page) || 1;
-        const perPage = 8;
+        const perPage = 6;
         
         console.log('Contando documentos...');
         const total = await Product.countDocuments({ active: true });
