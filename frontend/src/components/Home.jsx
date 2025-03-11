@@ -18,8 +18,6 @@ const Home = () => {
         let isMounted = true;
 
         const fetchProducts = async () => {
-            console.log('Modo atual:', import.meta.env.MODE);
-            console.log('API usada:', import.meta.env.VITE_API_URL);
             try {
                 setLoading(true);
                 const response = await api.get(`/api/products`);
