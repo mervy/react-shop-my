@@ -3,14 +3,14 @@ import Product from '../models/ProductModel.js';
 const getProducts = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
-        const perPage = 8;
+        const perPage = 6;
+
         const total = await Product.countDocuments({ active: true });
 
         const products = await Product.find({ active: true })
             .skip((page - 1) * perPage)
             .limit(perPage)
             .sort('-createdAt');
-
         res.json({
             products,
             total,
@@ -19,11 +19,10 @@ const getProducts = async (req, res) => {
             totalPages: Math.ceil(total / perPage),
         });
     } catch (error) {
-        console.error(error);
+        console.error('Erro ao buscar produtos:', error);
         res.status(500).json({ message: 'Erro ao buscar produtos', error });
     }
 };
-
 
 const getProductById = async (req, res) => {
     try {
@@ -38,7 +37,7 @@ const getProductById = async (req, res) => {
         console.error(error);
         res.status(500).json({ message: 'Server Error get product by id', error });
     }
-}
+};
 
 const createProduct = async (req, res) => {
     try {
@@ -49,13 +48,13 @@ const createProduct = async (req, res) => {
         console.error(error);
         res.status(400).json({ message: 'Server Error create product', error });
     }
-}
+};
 
 const updateProduct = async (req, res) => {
     try {
         const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
-            new: true            
-    });
+            new: true,
+        });
 
         if (!product) {
             return res.status(404).json({ message: 'Product not found for upadte' });
@@ -68,21 +67,21 @@ const updateProduct = async (req, res) => {
         console.error(error);
         res.status(400).json({ message: 'Server Error in update product', error });
     }
-}
+};
 
-const deleteProduct = async (req, res) => { 
+const deleteProduct = async (req, res) => {
     try {
         const product = await Product.findByIdAndDelete(req.params.id);
 
         if (!product) {
             return res.status(404).json({ message: 'Product not found for delete' });
         }
-       
+
         res.json({ message: 'Product removed sucessfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server Error in delete product', error });
     }
-}
+};
 
 export { getProducts, getProductById, createProduct, updateProduct, deleteProduct };
