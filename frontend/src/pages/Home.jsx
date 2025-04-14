@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import api from '../services/api';
-import ProductCard from './ProductCard';
-import Header from './Header';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import ProductCard from '../components/ProductCard';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { useCart } from '../contexts/CartContext';  // Importando o hook do carrinho
 
 const Home = () => {
@@ -18,11 +17,9 @@ const Home = () => {
         let isMounted = true;
 
         const fetchProducts = async () => {
-            console.log('Modo atual:', import.meta.env.MODE);
-            console.log('API usada:', import.meta.env.VITE_API_URL);
             try {
                 setLoading(true);
-                const response = await api.get(`/products`);
+                const response = await api.get(`/api/products?page=${currentPage}`);
                 if (isMounted) {
                     setProducts(response.data.products || []);
                     setTotalPages(response.data.totalPages);
@@ -58,8 +55,8 @@ const Home = () => {
 
     return (
         <div>
-            <Header />
-            <Navbar /> {/* Coloquei o Navbar aqui para garantir que a navegação seja exibida */}
+            <Header />            
+            <section className="container">
             <div className="row">
                 {products.length > 0 ? (
                     products.map((product) => (
@@ -92,6 +89,7 @@ const Home = () => {
                     Próxima
                 </button>
             </div>
+            </section>
             <Footer />
         </div>
     );
