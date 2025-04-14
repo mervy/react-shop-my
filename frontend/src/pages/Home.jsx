@@ -17,6 +17,11 @@ const Home = () => {
         let isMounted = true;
 
         const fetchProducts = async () => {
+<<<<<<< HEAD:frontend/src/pages/Home.jsx
+=======
+            console.log('Modo atual:', import.meta.env.MODE);
+            console.log('API usada:', import.meta.env.RENDER_BACKEND_URL);
+>>>>>>> 21e190a93913def2cece13dd6ca64f0e1039875c:frontend/src/components/Home.jsx
             try {
                 setLoading(true);
                 const response = await api.get(`/api/products?page=${currentPage}`);

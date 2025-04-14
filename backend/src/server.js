@@ -10,6 +10,7 @@ const app = express();
 
 connectDB();
 
+<<<<<<< HEAD
 const allowedOrigins = [
     process.env.FRONTEND_URL?.replace(/\/$/, '') || '', // Remove trailing slash
     process.env.FRONTEND_URL_PRO?.replace(/\/$/, '') || '', // Also include PRO URL
@@ -35,6 +36,28 @@ app.use(
         credentials: true,
     })
 );
+=======
+const allowedOrigins = 
+    process.env.NODE_ENV === 'production'
+        ? ['https://my-shops-with-react.onrender.com']
+        : ['http://localhost:3000', 'http://localhost:5173'];
+
+app.use(cors({
+    origin: (origin, callback) => {
+        // Permite requisições sem origem (ex: Postman)
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+}));
+
+>>>>>>> 21e190a93913def2cece13dd6ca64f0e1039875c
 
 app.use(express.json());
 
