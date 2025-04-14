@@ -1,10 +1,12 @@
 import axios from 'axios';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const api = axios.create({
-    //MODE já existe por default no Vite
-    baseURL: import.meta.env.MODE === 'production'
-        ? import.meta.env.RENDER_BACKEND_URL
-        : import.meta.env.VITE_API_URL
+  baseURL: isProduction 
+    ? 'https://my-shops-with-react-backend.onrender.com' 
+    : '/api', // This will use the proxy in development
+  withCredentials: true,
 });
 
 export default api;
