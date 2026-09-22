@@ -19,7 +19,8 @@ const Home = () => {
         const fetchProducts = async () => {
             try {
                 setLoading(true);
-                const response = await api.get(`/api/products?page=${currentPage}`);
+                const response = await api.get(`/products?page=${currentPage}`);
+                console.log('Response:', response.data);
                 if (isMounted) {
                     setProducts(response.data.products || []);
                     setTotalPages(response.data.totalPages);
